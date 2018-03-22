@@ -3,8 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EasyStepView.iml" filepath="$PROJECT_DIR$/EasyStepView.iml" />
+      <module fileurl="file://E:\repository\EasyStepView\EasyStepView.iml" filepath="E:\repository\EasyStepView\EasyStepView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://E:\repository\EasyStepView\app\app.iml" filepath="E:\repository\EasyStepView\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/easystepviewlib/easystepviewlib.iml" filepath="$PROJECT_DIR$/easystepviewlib/easystepviewlib.iml" />
+      <module fileurl="file://E:\repository\EasyStepView\easystepviewlib\easystepviewlib.iml" filepath="E:\repository\EasyStepView\easystepviewlib\easystepviewlib.iml" />
     </modules>
   </component>
 </project>

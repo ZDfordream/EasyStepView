@@ -10,10 +10,61 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    //添加我们的签名文件配置
+    signingConfigs {
+        release {
+            try {
+                storeFile file { "amxc_ddd_keystore.jks" }
+                storePassword "amxc123456"
+                keyAlias "amxc"
+                keyPassword "amxc123456"
+                //android studio2.2之后版本会默认启用V2签名机制,由于我们签名是之前版本的会导致7.0系统以上手机签名                   识别不了导致
+                //没办法安装 所以目前这里我们需要先禁用掉
+                v2SigningEnabled false
+            } catch (ex) {
+                throw new InvalidUserDataException("请在app文件夹下添加'signing.properties'文件并配置相应的变量值")
+            }
+        }
+        debug {
+            try {
+                storeFile file { "amxc_ddd_keystore.jks" }
+                storePassword "amxc123456"
+                keyAlias "amxc"
+                keyPassword "amxc123456"
+                //android studio2.2之后版本会默认启用V2签名机制,由于我们签名是之前版本的会导致7.0系统以上手机签名                   识别不了导致
+                //没办法安装 所以目前这里我们需要先禁用掉
+                v2SigningEnabled false
+            } catch (ex) {
+                throw new InvalidUserDataException("请在app文件夹下添加'signing.properties'文件并配置相应的变量值")
+            }
+        }
+    }
+
     buildTypes {
         release {
+            // 不显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "false"
+            //混淆
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // 移除无用的resource文件
+            shrinkResources false
+
+            signingConfig signingConfigs.release
+            //前一部分代表系统默认的android程序的混淆文件，该文件已经包含了基本的混淆声明
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+        }
+        debug {
+            // 显示Log
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            //混淆
+            minifyEnabled false
+            // 移除无用的resource文件
+            shrinkResources false
+
+            signingConfig signingConfigs.release
+            //前一部分代表系统默认的android程序的混淆文件，该文件已经包含了基本的混淆声明
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
         }
     }
 }
