@@ -67,6 +67,41 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
         }
     }
+
+    flavorDimensions "channel"
+    productFlavors {
+        xiaomi {
+            dimension "channel"
+        }
+        huawei {
+            dimension "channel"
+        }
+        oppo {
+            dimension "channel"
+        }
+    }
+
+
+    productFlavors.each { flavor ->
+        def umeng_appkey;
+        def app_market =flavor.name
+        flavor.applicationId = 'com.zhudong.easystepview'
+        umeng_appkey = "59bbc939c62dca6899000030"//需要替换
+
+
+        flavor.manifestPlaceholders = [
+                UM_APPKEY    : "${umeng_appkey}",
+                CHANNEL_NAME: app_market
+
+        ]
+
+
+
+
+
+
+    }
+
 }
 
 dependencies {
