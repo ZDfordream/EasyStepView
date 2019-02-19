@@ -7,7 +7,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName project.APP_VERSION
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -83,25 +83,33 @@ android {
 
 
     productFlavors.each { flavor ->
-        def umeng_appkey;
+        def umeng_appkey
         def app_market =flavor.name
         flavor.applicationId = 'com.zhudong.easystepview'
         umeng_appkey = "59bbc939c62dca6899000030"//需要替换
-
 
         flavor.manifestPlaceholders = [
                 UM_APPKEY    : "${umeng_appkey}",
                 CHANNEL_NAME: app_market
 
         ]
-
-
-
-
-
-
     }
 
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+            if (variant.buildType.name == 'release') {
+                def releaseApkName = 'v' + project.APP_VERSION + getDate() +
+                        '.apk'
+                output.outputFileName = releaseApkName
+            }
+        }
+    }
+}
+
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMddHHmm')
+    return formattedDate
 }
 
 dependencies {
