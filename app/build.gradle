@@ -84,12 +84,12 @@ android {
 
     productFlavors.each { flavor ->
         def umeng_appkey
-        def app_market =flavor.name
+        def app_market = flavor.name
         flavor.applicationId = 'com.zhudong.easystepview'
         umeng_appkey = "59bbc939c62dca6899000030"//需要替换
 
         flavor.manifestPlaceholders = [
-                UM_APPKEY    : "${umeng_appkey}",
+                UM_APPKEY   : "${umeng_appkey}",
                 CHANNEL_NAME: app_market
 
         ]
@@ -107,7 +107,7 @@ android {
                 } else if (oldName.contains('oppo')) {
                     appName = 'oppo'
                 }
-                def releaseApkName = appName+'_v_' + project.APP_VERSION + getDate() +
+                def releaseApkName = appName + '_v' + project.APP_VERSION + "_" + getDate() +
                         '.apk'
                 output.outputFileName = releaseApkName
             }
