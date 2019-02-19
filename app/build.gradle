@@ -98,8 +98,16 @@ android {
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
             def oldName = output.outputFileName
+            def appName = 'app'
             if (variant.buildType.name == 'release') {
-                def releaseApkName = oldName+'_v_' + project.APP_VERSION + getDate() +
+                if (oldName.contains('xiaomi')) {
+                    appName = 'xiaomi'
+                } else if (oldName.contains('huawei')) {
+                    appName = 'huawei'
+                } else if (oldName.contains('oppo')) {
+                    appName = 'oppo'
+                }
+                def releaseApkName = appName+'_v_' + project.APP_VERSION + getDate() +
                         '.apk'
                 output.outputFileName = releaseApkName
             }
