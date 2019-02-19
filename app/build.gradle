@@ -97,8 +97,9 @@ android {
 
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
+            def oldName = output.outputFileName
             if (variant.buildType.name == 'release') {
-                def releaseApkName = 'v' + project.APP_VERSION + getDate() +
+                def releaseApkName = oldName+'_v_' + project.APP_VERSION + getDate() +
                         '.apk'
                 output.outputFileName = releaseApkName
             }
